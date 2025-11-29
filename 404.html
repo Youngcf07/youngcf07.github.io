@@ -298,14 +298,24 @@
           lrcType: 0 || 0,
         });
         (function(){
-          // 尝试自动播放并在控制台输出结果，便于诊断浏览器是否阻止自动播放
+          // 尝试自动播放并在控制台输出结果，兼容返回非 Promise 的实现
           try {
             if (ap && typeof ap.play === 'function') {
-              ap.play().then(function(){
-                console.log('APlayer: autoplay started');
-              }).catch(function(e){
-                console.warn('APlayer: autoplay failed:', e);
-              });
+              const playResult = ap.play();
+              if (playResult && typeof playResult.then === 'function') {
+                playResult.then(function(){
+                  console.log('APlayer: autoplay started');
+                }).catch(function(e){
+                  console.warn('APlayer: autoplay failed:', e);
+                });
+              } else {
+                // play() 没有返回 Promise（旧实现或自定义行为），仍记录尝试结果
+                Promise.resolve(playResult).then(function(){
+                  console.log('APlayer: play() invoked (no Promise returned)');
+                }).catch(function(e){
+                  console.warn('APlayer: play() invocation failed:', e);
+                });
+              }
             }
           } catch (e) {
             console.warn('APlayer play error:', e);
