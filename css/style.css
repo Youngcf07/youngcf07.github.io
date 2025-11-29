@@ -634,6 +634,12 @@ button {
   transition: 1s;
   background: var(--color-background);
 }
+@media screen and (min-width: 960px) {
+  #wrap {
+/* 在桌面端把 wrap 设为透明，这样 body 的固定背景可见 */
+    background: transparent;
+  }
+}
 #main {
   flex: 1;
   padding: 0 20px;
