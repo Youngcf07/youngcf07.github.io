@@ -16,13 +16,13 @@
   --color-background: #eee;
   --color-code-background: #f8f8f8;
   --color-header-background: transparent; /* 头部背景改为透明 */
-  --color-header-foreground: #fff; /* 头部文字默认颜色 */
-  --color-header-shadow: rgba(0,0,0,0.7); /* 头部文字阴影，用于提高对比 */
+  --color-header-foreground: #1976d2; /* 页眉文字为深蓝色，更明显 */
+  --color-header-shadow: rgba(255,255,255,0.9); /* 白色阴影增强可读性 */
   --color-footer-background: #fff;
   --color-mobile-nav-background: #fff;
-  --color-wrap: #fff;
-  --color-sticky: #fff;
-  --color-h2-border: #eee;
+  --color-wrap: rgba(236,239,244,0.85); /* 半透明浅灰蓝色背景 */
+  --color-sticky: rgba(236,239,244,0.9);
+  --color-h2-border: #cfd8dc;
   --color-meta-shadow: var(--red-6);
   --color-hover-shadow: rgba(120,120,120,0.15);
   --color-h2-after: var(--red-1);
@@ -69,12 +69,12 @@
   --color-background: #21252b;
   --color-code-background: rgba(232,232,232,0.1);
   --color-header-background: transparent; /* 深色主题头部也设为透明 */
-  --color-header-foreground: #fff; /* 深色主题页眉文字 */
-  --color-header-shadow: rgba(0,0,0,0.7);
-  --color-footer-background: #21252b;
-  --color-mobile-nav-background: #21252b;
-  --color-wrap: #272b30;
-  --color-h2-border: #47474a;
+  --color-header-foreground: #e3f2fd; /* 深色模式页眉文字为亮白蓝色 */
+  --color-header-shadow: rgba(13,71,161,0.9); /* 深蓝色阴影 */
+  --color-footer-background: #37474f;
+  --color-mobile-nav-background: #37474f;
+  --color-wrap: rgba(55,71,79,0.75); /* 半透明灰蓝色背景 */
+  --color-h2-border: #546e7a;
   --color-meta-shadow: rgba(0,0,0,0.2);
   --color-hover-shadow: rgba(0,0,0,0.2);
   --highlight-nav: #222830;
@@ -769,7 +769,7 @@ button {
   color: var(--color-header-foreground);
 }
 #logo {
-  font-size: 40px;
+  font-size: 56px; /* 增大页眉字体 */
   font-weight: 700;
   letter-spacing: 2px;
   display: inline-block;
@@ -778,17 +778,17 @@ button {
 }
 @media screen and (max-width: 959px) {
   #logo {
-    font-size: 36px;
+    font-size: 48px;
   }
 }
 @media screen and (min-width: 480px) and (max-width: 767px) {
   #logo {
-    font-size: 30px;
+    font-size: 40px;
   }
 }
 @media screen and (max-width: 479px) {
   #logo {
-    font-size: 30px;
+    font-size: 36px;
   }
 }
 #subtitle {
