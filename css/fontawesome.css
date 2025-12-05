@@ -140,6 +140,15 @@
 .icon-github:before {
   content: '\f09b';
 }
+.icon-twitter:before {
+  content: '\e61b';
+}
+.icon-bilibili:before {
+  content: '\e3d9';
+}
+.icon-weibo:before {
+  content: '\f18a';
+}
 .icon-email:before {
   content: '\f0e0';
   font-weight: 900;
@@ -172,6 +181,14 @@
 .icon-taichi:before {
   font-family: var(--font-icon);
   content: '\f6ad';
+}
+.icon-weixin:before {
+  font-family: var(--font-icon);
+  content: '\f1d7';
+}
+.icon-qq:before {
+  font-family: var(--font-icon);
+  content: '\f1d6';
 }
 .icon-image:before {
   font-family: var(--font-icon);
