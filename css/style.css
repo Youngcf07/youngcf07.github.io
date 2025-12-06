@@ -747,7 +747,7 @@ button {
   display: block;
 }
 @media screen and (max-width: 479px) {
-  .post-cover-mobile {
+  #header img.post-cover-mobile {
     display: block;
     position: fixed;
     top: 0;
@@ -757,7 +757,7 @@ button {
     z-index: -2;
     object-fit: cover;
   }
-  .post-cover-desktop {
+  #header img.post-cover-desktop {
     display: none;
   }
 }
