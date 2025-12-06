@@ -115,9 +115,15 @@
     <!-- 主题色调节，与主菜单并列，位于菜单末尾 -->
     <div id="theme-color-btn-wrap" class="main-nav-link-wrap" style="position:relative;display:inline-flex;align-items:center;">
       <button id="theme-color-btn" type="button" style="background:transparent;color:var(--color-header-foreground);border:none;border-radius:0;padding:6px 10px;cursor:pointer;box-shadow:none;font-size:15px;font-weight:600;vertical-align:middle;" title="更改主题主色">调色</button>
-      <div id="theme-color-slider-pop" style="display:none;position:fixed;top:35%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.18);z-index:1200;">
-        <input id="theme-color-slider" type="range" min="210" max="270" value="210" step="1" style="width:120px;vertical-align:middle;">
-        <span id="theme-color-slider-label" style="font-size:12px;color:var(--color-header-foreground);margin-left:4px;vertical-align:middle;">主色调</span>
+      <div id="theme-color-slider-pop" style="display:none;position:fixed;top:35%;left:50%;transform:translate(-50%,-50%);background:#fff;padding:12px 16px;border-radius:10px;box-shadow:0 6px 24px rgba(0,0,0,0.18);z-index:1200;min-width:220px;">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;">
+          <input id="theme-color-slider" type="range" min="0" max="360" value="190" step="1" style="width:160px;vertical-align:middle;">
+          <span id="theme-color-slider-label" style="font-size:12px;color:var(--color-header-foreground);vertical-align:middle;">色相</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <input id="theme-color-lightness" type="range" min="0" max="100" value="55" step="1" style="width:160px;vertical-align:middle;">
+          <span style="font-size:12px;color:var(--color-header-foreground);vertical-align:middle;">亮度</span>
+        </div>
       </div>
     </div>
     <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
@@ -316,7 +322,7 @@
 <li>📚 轻小说</li>
 </ul>
 <h3 id="📮-联系方式"><a href="#📮-联系方式" class="headerlink" title="📮 联系方式"></a>📮 联系方式</h3><ul>
-<li>📧 Email: <a href="mailto:&#121;&#x6f;&#117;&#x6e;&#103;&#99;&#102;&#x30;&#55;&#x40;&#49;&#x36;&#x33;&#46;&#x63;&#x6f;&#109;">youngcf07@163.com</a></li>
+<li>📧 Email: <a href="mailto:&#x79;&#x6f;&#117;&#110;&#x67;&#x63;&#x66;&#x30;&#x37;&#x40;&#x31;&#x36;&#51;&#x2e;&#99;&#x6f;&#109;">youngcf07@163.com</a></li>
 <li>💻 GitHub: <a target="_blank" rel="noopener" href="https://github.com/Youngcf07">@Youngcf07</a></li>
 <li>📺 Bilibili: <a target="_blank" rel="noopener" href="https://space.bilibili.com/">点击访问</a></li>
 </ul>

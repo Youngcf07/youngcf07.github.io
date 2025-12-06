@@ -23,10 +23,14 @@ window.throttle = (func, limit) => {
       var pop = document.getElementById('theme-color-slider-pop');
       var slider = document.getElementById('theme-color-slider');
       var label = document.getElementById('theme-color-slider-label');
-      var setThemeColor = function(hue) {
-        // 以 HSL 形式设置主色调，亮色/暗色自动适配
-        var light = `hsl(${hue}, 80%, 54%)`;
-        var dark = `hsl(${hue}, 80%, 70%)`;
+      var lightnessSlider = document.getElementById('theme-color-lightness');
+      var setThemeColor = function(hue, lightness) {
+        // 以 HSL 形式设置主色调，亮度可滑到全黑/全白
+        var l = Math.max(0, Math.min(100, Number(lightness) || 54));
+        var s = (l <= 5 || l >= 95) ? 0 : 80; // 极值时去饱和以获得纯黑/白
+        var light = `hsl(${hue}, ${s}%, ${l}%)`;
+        var darkL = Math.max(0, Math.min(100, l + 16));
+        var dark = `hsl(${hue}, ${s}%, ${darkL}%)`;
         document.documentElement.style.setProperty('--color-header-foreground', light);
         document.documentElement.style.setProperty('--color-link', light);
         document.documentElement.style.setProperty('--red-1', light);
@@ -43,7 +47,7 @@ window.throttle = (func, limit) => {
           document.documentElement.style.setProperty('--grey-9', dark);
         }
       };
-      if(btn && pop && slider){
+      if(btn && pop && slider && lightnessSlider){
         btn.addEventListener('click',function(e){
           pop.style.display = pop.style.display==='none' ? 'block' : 'none';
         });
@@ -52,9 +56,12 @@ window.throttle = (func, limit) => {
             pop.style.display = 'none';
           }
         });
-        setThemeColor(slider.value);
+        setThemeColor(slider.value, lightnessSlider.value);
         slider.addEventListener('input', function(e) {
-          setThemeColor(e.target.value);
+          setThemeColor(e.target.value, lightnessSlider.value);
+        });
+        lightnessSlider.addEventListener('input', function(e) {
+          setThemeColor(slider.value, e.target.value);
         });
       }
     });
