@@ -112,6 +112,14 @@
         <a class="main-nav-link-wrap" href="/tools/">
           <span class="main-nav-link">工具</span>
         </a>
+    <!-- 主题色调节，与主菜单并列，位于菜单末尾 -->
+    <div id="theme-color-btn-wrap" class="main-nav-link-wrap" style="position:relative;display:inline-flex;align-items:center;">
+      <button id="theme-color-btn" type="button" style="background:transparent;color:var(--color-header-foreground);border:none;border-radius:0;padding:6px 10px;cursor:pointer;box-shadow:none;font-size:15px;font-weight:600;vertical-align:middle;" title="更改主题主色">调色</button>
+      <div id="theme-color-slider-pop" style="display:none;position:absolute;top:40px;right:0;background:#fff;padding:10px 16px;border-radius:8px;box-shadow:0 2px 12px rgba(0,0,0,0.12);z-index:999;">
+        <input id="theme-color-slider" type="range" min="210" max="270" value="210" step="1" style="width:120px;vertical-align:middle;">
+        <span id="theme-color-slider-label" style="font-size:12px;color:var(--color-header-foreground);margin-left:4px;vertical-align:middle;">主色调</span>
+      </div>
+    </div>
     <a id="main-nav-toggle" class="nav-icon" aria-label="Toggle navigation" role="button"></a>
   </nav>
   <nav id="sub-nav" aria-label="Secondary navigation">
