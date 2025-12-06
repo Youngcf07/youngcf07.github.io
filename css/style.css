@@ -766,6 +766,31 @@ button {
 #header-nav.header-nav-hidden {
   top: -80px;
 }
+#theme-color-btn-wrap {
+  position: relative;
+}
+#theme-color-btn {
+  white-space: nowrap;
+}
+#theme-color-slider-pop {
+  min-width: 180px;
+  max-width: 240px;
+  right: 0;
+  z-index: 1200;
+}
+@media screen and (max-width: 479px) {
+  #theme-color-btn {
+    padding: 6px 6px;
+    font-size: 14px;
+  }
+  #theme-color-slider-pop {
+    min-width: 160px;
+    max-width: calc(100vw - 32px);
+    left: auto;
+    right: 0;
+    top: 36px;
+  }
+}
 #header-title {
   font-weight: 700;
   text-align: center;
