@@ -746,6 +746,9 @@ button {
 .post-cover-desktop {
   display: block;
 }
+.home-cover {
+  display: block;
+}
 @media screen and (max-width: 479px) {
   #header img.post-cover-mobile {
     display: block;
@@ -759,6 +762,9 @@ button {
   }
   #header img.post-cover-desktop {
     display: none;
+  }
+  #header img.home-cover {
+    display: block;
   }
 }
 #header-outer {
