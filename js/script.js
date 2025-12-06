@@ -17,6 +17,47 @@ window.throttle = (func, limit) => {
 };
 
 (function () {
+    // 主题色滑块功能
+    window.addEventListener('DOMContentLoaded', function() {
+      var btn = document.getElementById('theme-color-btn');
+      var pop = document.getElementById('theme-color-slider-pop');
+      var slider = document.getElementById('theme-color-slider');
+      var label = document.getElementById('theme-color-slider-label');
+      var setThemeColor = function(hue) {
+        // 以 HSL 形式设置主色调，亮色/暗色自动适配
+        var light = `hsl(${hue}, 80%, 54%)`;
+        var dark = `hsl(${hue}, 80%, 70%)`;
+        document.documentElement.style.setProperty('--color-header-foreground', light);
+        document.documentElement.style.setProperty('--color-link', light);
+        document.documentElement.style.setProperty('--red-1', light);
+        document.documentElement.style.setProperty('--color-default', light);
+        // 额外联动常用字体色变量
+        document.documentElement.style.setProperty('--grey-7', light);
+        document.documentElement.style.setProperty('--grey-9', light);
+        if(document.documentElement.getAttribute('data-theme')==='dark'){
+          document.documentElement.style.setProperty('--color-header-foreground', dark);
+          document.documentElement.style.setProperty('--color-link', dark);
+          document.documentElement.style.setProperty('--red-1', dark);
+          document.documentElement.style.setProperty('--color-default', dark);
+          document.documentElement.style.setProperty('--grey-7', dark);
+          document.documentElement.style.setProperty('--grey-9', dark);
+        }
+      };
+      if(btn && pop && slider){
+        btn.addEventListener('click',function(e){
+          pop.style.display = pop.style.display==='none' ? 'block' : 'none';
+        });
+        document.addEventListener('click',function(e){
+          if(!e.target.closest('#theme-color-btn-wrap')){
+            pop.style.display = 'none';
+          }
+        });
+        setThemeColor(slider.value);
+        slider.addEventListener('input', function(e) {
+          setThemeColor(e.target.value);
+        });
+      }
+    });
   // A Simple EventListener
   [Element, Document, Window].forEach((target) => {
     target.prototype._addEventListener = target.prototype.addEventListener;

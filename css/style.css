@@ -10,14 +10,14 @@
   --grey-9: #888;
   --grey-7: var(--color-default);
   --color-archive-year: #000;
-  --color-default: #444;
+  --color-default: #222;
   --color-border: var(--red-3);
   --color-link: var(--red-1);
   --color-background: #eee;
   --color-code-background: #f8f8f8;
   --color-header-background: transparent; /* 头部背景改为透明 */
-  --color-header-foreground: #1976d2; /* 页眉文字为深蓝色，更明显 */
-  --color-header-shadow: rgba(255,255,255,0.9); /* 白色阴影增强可读性 */
+  --color-header-foreground: #174ea6; /* 更深蓝，适配深浅背景 */
+  --color-header-shadow: rgba(255,255,255,0.95); /* 白色阴影增强可读性 */
   --color-footer-background: #fff;
   --color-mobile-nav-background: #fff;
   --color-wrap: rgba(236,239,244,0.85); /* 半透明浅灰蓝色背景 */
@@ -64,12 +64,12 @@
   --red-5-5: rgba(227, 242, 253, 0.05);
   --red-6: rgba(240, 247, 255, 0.2);
   --color-archive-year: #999;
-  --color-default: #999;
+  --color-default: #e3eaf7;
   --color-border: var(--red-5);
   --color-background: #21252b;
   --color-code-background: rgba(232,232,232,0.1);
   --color-header-background: transparent; /* 深色主题头部也设为透明 */
-  --color-header-foreground: #e3f2fd; /* 深色模式页眉文字为亮白蓝色 */
+  --color-header-foreground: #e3eaf7; /* 深色模式页眉文字为亮白蓝色 */
   --color-header-shadow: rgba(13,71,161,0.9); /* 深蓝色阴影 */
   --color-footer-background: #37474f;
   --color-mobile-nav-background: #37474f;
