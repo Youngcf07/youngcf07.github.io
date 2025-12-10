@@ -376,7 +376,7 @@
     </div>
       <div>
         <span class="icon-brush"></span>
-        528
+        550
         &nbsp;|&nbsp;
         <span class="icon-coffee"></span>
         00:07
@@ -457,6 +457,18 @@
       </div>
 </div>
 </div>
+  </div>
+  <div class="mobile-tagcloud-wrap">
+      <div class="widget-wrapper">
+    <div class="widget-wrap" data-aos="fade-up">
+      <h3 class="widget-title">标签云</h3>
+      <div class="widget tagcloud">
+        <a href="/tags/ACG/" style="font-size: 10px;">ACG</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/%E4%BA%8C%E6%AC%A1%E5%85%83/" style="font-size: 10px;">二次元</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 20px;">动画</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E6%AD%8C%E5%8D%95/" style="font-size: 10px;">歌单</a> <a href="/tags/%E6%B0%9B%E5%9B%B4/" style="font-size: 10px;">氛围</a> <a href="/tags/%E6%B3%AA%E7%9B%AE/" style="font-size: 10px;">泪目</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
+        <a class="tagcloud-hidden-gallery" href="/gallery/" aria-label="Gallery">图库</a>
+      </div>
+    </div>
+  </div>
+
   </div>
       <div class="sidebar-btn-wrapper">
         <div class="sidebar-toc-btn current"></div>
@@ -660,7 +672,7 @@
     
     // 3. 如果localStorage无效，检查配置的默认评论系统
     if (!defaultComment) {
-      var configDefault = 'valine';
+      var configDefault = 'waline';
       if (commentConfig[configDefault]?.enable) {
         defaultComment = configDefault;
       }
@@ -821,7 +833,7 @@
           fixed: isMobile ? true : (false || false),
           autoplay: false || false,
           loop: 'all' || 'all',
-          order: 'list' || 'list',
+          order: 'random' || 'list',
           preload: 'auto' || 'auto',
           volume: 0.7 || 0.7,
           mutex: true || true,
