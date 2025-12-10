@@ -149,6 +149,7 @@
       <img class="home-cover"  fetchpriority="high" src="/images/1.jpg" alt="">
     </picture>
       <img class="post-cover-preload" alt="" style="display:none;">
+  
   <div id="header-outer">
     <div id="header-title">
         <a href="/" id="logo">
@@ -328,7 +329,8 @@
           storageName: 'aplayer-setting',  // 启用本地存储，记住音量等设置
         });
         (function(){
-          // 尝试自动播放并在控制台输出结果，兼容返回非 Promise 的实现
+          // 如未开启自动播放，则完全不触发播放调用
+          if (false !== true) return;
           try {
             if (ap && typeof ap.play === 'function') {
               const playResult = ap.play();
@@ -339,7 +341,6 @@
                   console.warn('APlayer: autoplay failed:', e);
                 });
               } else {
-                // play() 没有返回 Promise（旧实现或自定义行为），仍记录尝试结果
                 Promise.resolve(playResult).then(function(){
                   console.log('APlayer: play() invoked (no Promise returned)');
                 }).catch(function(e){

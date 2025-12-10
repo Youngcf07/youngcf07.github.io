@@ -193,6 +193,7 @@
       <img class="post-cover-desktop"  fetchpriority="high" src="/images/2.webp" alt="技术小贴士 · CSS 动画顺滑技巧">
     </picture>
     <img class="post-cover-mobile" src="/images/2.webp" alt="技术小贴士 · CSS 动画顺滑技巧">
+  
   <div id="header-outer">
     <div id="header-title">
           <span id="logo">
@@ -298,7 +299,12 @@
     
     <div class="hr-line"></div>
     
+      
+
+
+    
     <div class="e-content article-entry" itemprop="articleBody">
+      
         <h2 id="技巧-1：用-transform-opacity"><a href="#技巧-1：用-transform-opacity" class="headerlink" title="技巧 1：用 transform&#x2F;opacity"></a>技巧 1：用 transform&#x2F;opacity</h2><p>避免频繁改 left&#x2F;top，优先使用 <code>transform</code> 和 <code>opacity</code>，GPU 更友好。</p>
 <span id="more"></span>
 
@@ -460,7 +466,9 @@
       <h3 class="widget-title">标签云</h3>
       <div class="widget tagcloud">
         <a href="/tags/ACG/" style="font-size: 10px;">ACG</a> <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/%E4%BA%8C%E6%AC%A1%E5%85%83/" style="font-size: 10px;">二次元</a> <a href="/tags/%E5%89%8D%E7%AB%AF/" style="font-size: 10px;">前端</a> <a href="/tags/%E5%8A%A8%E7%94%BB/" style="font-size: 20px;">动画</a> <a href="/tags/%E6%97%A5%E5%B8%B8/" style="font-size: 10px;">日常</a> <a href="/tags/%E6%AD%8C%E5%8D%95/" style="font-size: 10px;">歌单</a> <a href="/tags/%E6%B0%9B%E5%9B%B4/" style="font-size: 10px;">氛围</a> <a href="/tags/%E6%B3%AA%E7%9B%AE/" style="font-size: 10px;">泪目</a> <a href="/tags/%E6%B5%8B%E8%AF%95/" style="font-size: 10px;">测试</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 10px;">随笔</a>
-        <a class="tagcloud-hidden-gallery" href="/gallery/" aria-label="Gallery">图库</a>
+        <div style="margin-top: 12px; text-align: center; opacity: 0.6; font-size: 12px;">
+          <a href="/gallery/" style="color: inherit; text-decoration: none; hover: {text-decoration: underline}">图库</a>
+        </div>
       </div>
     </div>
   </div>
@@ -839,7 +847,8 @@
           storageName: 'aplayer-setting',  // 启用本地存储，记住音量等设置
         });
         (function(){
-          // 尝试自动播放并在控制台输出结果，兼容返回非 Promise 的实现
+          // 如未开启自动播放，则完全不触发播放调用
+          if (false !== true) return;
           try {
             if (ap && typeof ap.play === 'function') {
               const playResult = ap.play();
@@ -850,7 +859,6 @@
                   console.warn('APlayer: autoplay failed:', e);
                 });
               } else {
-                // play() 没有返回 Promise（旧实现或自定义行为），仍记录尝试结果
                 Promise.resolve(playResult).then(function(){
                   console.log('APlayer: play() invoked (no Promise returned)');
                 }).catch(function(e){
