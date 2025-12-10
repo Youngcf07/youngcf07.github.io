@@ -20,7 +20,7 @@
   --color-header-shadow: rgba(255,255,255,0.95); /* 白色阴影增强可读性 */
   --color-footer-background: #fff;
   --color-mobile-nav-background: #fff;
-  --color-wrap: rgba(236,239,244,0.85); /* 半透明浅灰蓝色背景 */
+  --color-wrap: rgba(248,250,252,0.95); /* 提高不透明度，更亮背景 */
   --color-sticky: rgba(236,239,244,0.9);
   --color-h2-border: #cfd8dc;
   --color-meta-shadow: var(--red-6);
@@ -73,7 +73,7 @@
   --color-header-shadow: rgba(13,71,161,0.9); /* 深蓝色阴影 */
   --color-footer-background: #37474f;
   --color-mobile-nav-background: #37474f;
-  --color-wrap: rgba(55,71,79,0.75); /* 半透明灰蓝色背景 */
+  --color-wrap: rgba(55,71,79,0.88); /* 提高不透明度，更清晰 */
   --color-h2-border: #546e7a;
   --color-meta-shadow: rgba(0,0,0,0.2);
   --color-hover-shadow: rgba(0,0,0,0.2);
@@ -1583,7 +1583,8 @@ button {
   border-radius: 12px;
   background: var(--color-wrap);
   display: flex;
-  transition: 0.3s;
+  transition: transform 80ms ease-out, box-shadow 120ms ease-out;
+  will-change: transform;
 }
 @media screen and (max-width: 767px) {
   .post-wrap {
@@ -1601,7 +1602,7 @@ button {
 }
 .post-wrapper {
   border-radius: 12px;
-  transition: 0.3s;
+  transition: transform 80ms ease-out, box-shadow 120ms ease-out;
 }
 .post-wrapper .aos-animate {
   transition-property: initial !important;
@@ -1613,14 +1614,6 @@ button {
 }
 .post-wrapper img {
   will-change: transform;
-}
-@media screen and (min-width: 768px) {
-  .post-wrapper:hover {
-    transform: scale(1.01);
-  }
-  .post-wrapper:hover img {
-    transform: scale(1.05);
-  }
 }
 .post-info {
   height: 100%;

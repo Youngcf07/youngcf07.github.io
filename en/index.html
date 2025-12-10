@@ -283,23 +283,78 @@
   </div>
 </aside>
 
-          <section id="main" aria-label="Main content">  <div class="home-category-shortcuts" data-aos="fade-up">
-    <a class="home-category-card" href="/en/categories/%E7%94%9F%E6%B4%BB/" style="--cat-bg: url('/images/93bec6ccc7ae91f465b45de2e2d63e89edff06f4e363b78df4e9dcbed0d887c4.webp');">
+          <section id="main" aria-label="Main content">  <div class="home-category-shortcuts" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
+    <a class="home-category-card" href="/en/categories/%E7%94%9F%E6%B4%BB/" style="--cat-bg: url('/images/93bec6ccc7ae91f465b45de2e2d63e89edff06f4e363b78df4e9dcbed0d887c4.webp'); transform-style: preserve-3d;">
       <div class="cat-title">生活</div>
       <div class="cat-desc">日常记录与随笔</div>
     </a>
-    <a class="home-category-card" href="/en/categories/%E5%AD%A6%E4%B9%A0/" style="--cat-bg: url('/images/54500b8e59f93d7e564e8c2d62eeafcff5f956e9fceba59079319a385e06d4fe.webp');">
+    <a class="home-category-card" href="/en/categories/%E5%AD%A6%E4%B9%A0/" style="--cat-bg: url('/images/54500b8e59f93d7e564e8c2d62eeafcff5f956e9fceba59079319a385e06d4fe.webp'); transform-style: preserve-3d;">
       <div class="cat-title">学习</div>
       <div class="cat-desc">学习笔记与总结</div>
     </a>
   </div>
+  <script>
+  // 首页分类卡 3D 立方体效果
+  document.addEventListener('DOMContentLoaded', function() {
+    const catCards = document.querySelectorAll('.home-category-card');
+    const maxTilt = 12; // 减弱倾斜角度
+
+    catCards.forEach(card => {
+      const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+      card.dataset.baseRotate = baseRotate + 'deg';
+      card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+      card.style.border = '1px solid rgba(255,255,255,0.25)';
+      card.style.position = 'relative';
+
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+        const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+        
+        const lightX = (x / rect.width) * 100;
+        const lightY = (y / rect.height) * 100;
+        
+        card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+        
+        // 立方体阴影效果
+        card.style.boxShadow = `
+          0 20px 50px rgba(0,0,0,0.3),
+          0 10px 25px rgba(0,0,0,0.2),
+          0 5px 12px rgba(0,0,0,0.15),
+          inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+          inset -3px -3px 10px rgba(0,0,0,0.15),
+          ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+          0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+        `;
+        
+        card.style.borderImage = `linear-gradient(
+          ${rotateX > 0 ? '180deg' : '0deg'},
+          rgba(255,255,255,0.4) 0%,
+          rgba(255,255,255,0.1) 50%,
+          rgba(0,0,0,0.1) 100%
+        ) 1`;
+        
+        card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = `rotate(${card.dataset.baseRotate})`;
+        card.style.boxShadow = '';
+        card.style.filter = '';
+        card.style.borderImage = '';
+      });
+    });
+  });
+  </script>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/07/music-share/" aria-label="音乐分享 · 雨天歌单" title="音乐分享 · 雨天歌单"></a>
-    <div class="post-cover left">
+    <div class="post-cover left" style="transform-style: preserve-3d;">
         <img data-src="/images/acf3480ce867cc9d14e2f332c857985a2b725c528b20f1ecaf6d978540f2f3a5.webp" data-sizes="auto" alt="音乐分享 · 雨天歌单" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-07</span>
           <span><span class="icon-calendar-plus"></span>2025-12-07</span>
@@ -313,13 +368,74 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/07/anime-review/" aria-label="番剧速记 · 《未闻花名》重温" title="番剧速记 · 《未闻花名》重温"></a>
-    <div class="post-cover right">
+    <div class="post-cover right" style="transform-style: preserve-3d;">
         <img data-src="/images/3cf3adac1166668e7cda2bfaf61748a518c997ccf03e366540a2e8319c60c285.webp" data-sizes="auto" alt="番剧速记 · 《未闻花名》重温" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-07</span>
           <span><span class="icon-calendar-plus"></span>2025-12-07</span>
@@ -333,13 +449,74 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/07/tech-tip/" aria-label="技术小贴士 · CSS 动画顺滑技巧" title="技术小贴士 · CSS 动画顺滑技巧"></a>
-    <div class="post-cover left">
+    <div class="post-cover left" style="transform-style: preserve-3d;">
         <img data-src="/images/e43c30e0026ecf55c45a1fbb3ccfc81a2f7f5f7ea241c3ef5bb19f79a52a40cc.webp" data-sizes="auto" alt="技术小贴士 · CSS 动画顺滑技巧" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-07</span>
           <span><span class="icon-calendar-plus"></span>2025-12-07</span>
@@ -353,13 +530,74 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/07/study-note/" aria-label="学习笔记 · Hexo 快速复习" title="学习笔记 · Hexo 快速复习"></a>
-    <div class="post-cover right">
+    <div class="post-cover right" style="transform-style: preserve-3d;">
         <img data-src="/images/fa5c050f5425bf05a613a6e9735b72673a575724527c39c2250767b4b2e2dde6.webp" data-sizes="auto" alt="学习笔记 · Hexo 快速复习" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-07</span>
           <span><span class="icon-calendar-plus"></span>2025-12-07</span>
@@ -373,13 +611,74 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
       <div class="post-wrapper">
-  <div class="post-wrap left" data-aos="fade-up">
+  <div class="post-wrap left" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/07/life-note/" aria-label="生活随笔 · 清晨碎片" title="生活随笔 · 清晨碎片"></a>
-    <div class="post-cover left">
+    <div class="post-cover left" style="transform-style: preserve-3d;">
         <img data-src="/images/31d0416ee50b3958b6718721d2db0cfa38f60c82e43aaa6d0ea90b84d6033b4f.webp" data-sizes="auto" alt="生活随笔 · 清晨碎片" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-07</span>
           <span><span class="icon-calendar-plus"></span>2025-12-07</span>
@@ -393,13 +692,74 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
       <div class="post-wrapper">
-  <div class="post-wrap right" data-aos="fade-up">
+  <div class="post-wrap right" data-aos="fade-up" style="transform-style: preserve-3d; perspective: 1000px;">
       <a class="post-link" href="/en/2025/12/05/test-article/" aria-label="测试样例文章" title="测试样例文章"></a>
-    <div class="post-cover right">
+    <div class="post-cover right" style="transform-style: preserve-3d;">
         <img data-src="/images/95fb6a8339afee4a7bdfcec78fa7ff86ee00c064d8cef05b7857a5fa6bffb166.webp" data-sizes="auto" alt="测试样例文章" class="lazyload">
     </div>
-    <div class="post-info">
+    <div class="post-info" style="transform-style: preserve-3d;">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2025-12-05</span>
           <span><span class="icon-calendar-plus"></span>2025-12-05</span>
@@ -413,6 +773,67 @@
     </div>
   </div>
 </div>
+
+<script>
+// 首页文章卡 3D 立方体效果
+document.addEventListener('DOMContentLoaded', function() {
+  const cards = document.querySelectorAll('.post-wrap');
+  const maxTilt = 12; // 减弱倾斜角度
+
+  cards.forEach(card => {
+    const baseRotate = (Math.random() * 2 - 1).toFixed(2);
+    card.dataset.baseRotate = baseRotate + 'deg';
+    card.style.transition = 'transform 50ms ease-out, box-shadow 80ms ease-out, filter 80ms ease-out';
+    card.style.border = '1px solid rgba(255,255,255,0.2)'; // 边框
+    card.style.position = 'relative';
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateY = ((x / rect.width) - 0.5) * maxTilt * 2;
+      const rotateX = -((y / rect.height) - 0.5) * maxTilt * 2;
+
+      // 计算光源位置
+      const lightX = (x / rect.width) * 100;
+      const lightY = (y / rect.height) * 100;
+
+      card.style.transform = `rotate(${card.dataset.baseRotate}) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(25px)`;
+      
+      // 多层阴影 + 内部高光营造立方体感
+      card.style.boxShadow = `
+        0 20px 50px rgba(0,0,0,0.3),
+        0 10px 25px rgba(0,0,0,0.2),
+        0 5px 12px rgba(0,0,0,0.15),
+        inset ${(lightX - 50) * 0.3}px ${(lightY - 50) * 0.3}px 40px rgba(255,255,255,0.12),
+        inset -3px -3px 10px rgba(0,0,0,0.15),
+        ${rotateY > 0 ? '8px' : '-8px'} 0 15px -5px rgba(0,0,0,0.25),
+        0 ${rotateX > 0 ? '8px' : '-8px'} 15px -5px rgba(0,0,0,0.25)
+      `;
+      
+      // 边框高光效果
+      const borderLight = rotateX > 0 ? 'top' : 'bottom';
+      const borderLightSide = rotateY > 0 ? 'right' : 'left';
+      card.style.borderImage = `linear-gradient(
+        ${borderLight === 'top' ? '180deg' : '0deg'},
+        rgba(255,255,255,0.4) 0%,
+        rgba(255,255,255,0.1) 50%,
+        rgba(0,0,0,0.1) 100%
+      ) 1`;
+      
+      // 轻微的亮度变化
+      card.style.filter = `brightness(${1 + Math.abs(rotateX + rotateY) * 0.003})`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = `rotate(${card.dataset.baseRotate})`;
+      card.style.boxShadow = '';
+      card.style.filter = '';
+      card.style.borderImage = '';
+    });
+  });
+});
+</script>
 
 </section>
         </div>

@@ -1,8 +1,7 @@
-// 下雨特效
+// 中雨特效 - 清晰可见但不影响阅读
 (function() {
   'use strict';
   
-  // 创建画布
   const canvas = document.createElement('canvas');
   canvas.id = 'rain-canvas';
   canvas.style.cssText = `
@@ -19,11 +18,9 @@
   const ctx = canvas.getContext('2d');
   let w, h;
   
-  // 雨滴数组
   const raindrops = [];
-  const maxRaindrops = 150; // 雨滴数量
+  const maxRaindrops = 150; // 中雨数量
   
-  // 雨滴类
   class Raindrop {
     constructor() {
       this.reset();
@@ -32,16 +29,15 @@
     reset() {
       this.x = Math.random() * w;
       this.y = Math.random() * -h;
-      this.length = Math.random() * 15 + 10; // 雨滴长度
-      this.speed = Math.random() * 3 + 4; // 下落速度
-      this.opacity = Math.random() * 0.3 + 0.3; // 透明度
-      this.width = Math.random() * 0.5 + 0.5; // 宽度
+      this.length = Math.random() * 25 + 20; // 较长的雨滴
+      this.speed = Math.random() * 6 + 8; // 较快速度
+      this.opacity = Math.random() * 0.3 + 0.2; // 适中透明度
+      this.width = Math.random() * 1.2 + 0.8;
     }
     
     fall() {
       this.y += this.speed;
       
-      // 如果雨滴落到底部，重置位置
       if (this.y > h) {
         this.reset();
         this.y = -this.length;
@@ -49,22 +45,26 @@
     }
     
     draw() {
+      const gradient = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.length);
+      gradient.addColorStop(0, `rgba(200, 220, 255, 0)`);
+      gradient.addColorStop(0.5, `rgba(200, 220, 255, ${this.opacity})`);
+      gradient.addColorStop(1, `rgba(200, 220, 255, ${this.opacity * 0.3})`);
+      
       ctx.beginPath();
       ctx.moveTo(this.x, this.y);
       ctx.lineTo(this.x, this.y + this.length);
-      ctx.strokeStyle = `rgba(174, 194, 224, ${this.opacity})`;
+      ctx.strokeStyle = gradient;
       ctx.lineWidth = this.width;
+      ctx.lineCap = 'round';
       ctx.stroke();
     }
   }
   
-  // 调整画布大小
   function resize() {
     w = canvas.width = window.innerWidth;
     h = canvas.height = window.innerHeight;
   }
   
-  // 初始化雨滴
   function init() {
     resize();
     for (let i = 0; i < maxRaindrops; i++) {
@@ -72,8 +72,8 @@
     }
   }
   
-  // 动画循环
   function animate() {
+    // 完全清除画布，不影响背景
     ctx.clearRect(0, 0, w, h);
     
     raindrops.forEach(drop => {
@@ -84,10 +84,9 @@
     requestAnimationFrame(animate);
   }
   
-  // 监听窗口大小变化
   window.addEventListener('resize', resize);
   
-  // 启动
   init();
   animate();
 })();
+
