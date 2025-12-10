@@ -2307,7 +2307,7 @@ button {
   background-image: linear-gradient(145deg, rgba(0,0,0,0.35), rgba(0,0,0,0.2)), var(--cat-bg);
   background-size: cover;
   background-position: center;
-  color: #fff;
+  color: var(--color-header-foreground);
   text-decoration: none;
   box-shadow: var(--shadow-card);
   transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
